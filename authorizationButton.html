@@ -1,0 +1,16 @@
+    <div id="post">
+      <button onclick="authorize()"><?=button_face?></button>
+      <textarea readonly></textarea>
+    </div>
+    <script>
+      function authorize(){
+        google.script.run.withSuccessHandler(function(authorization_url){
+          $("#post textarea").text(authorization_url);
+          setTimeout(function(){
+　　　　　　  window.open(authorization_url, "_blank");   
+          }, 1000);
+        }).withFailureHandler(function(e){
+          alert(e);
+        }).getAuthorizationUrl();
+      }
+    </script>
